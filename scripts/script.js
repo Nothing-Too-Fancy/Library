@@ -1,5 +1,8 @@
 let myLibrary = [];
 
+//DOM Objects
+
+
 function Book() {
    title: 'Unknown';
    author: 'Unknown';
@@ -8,6 +11,6 @@ function Book() {
    read: false;
 }
 
-function addBookToLibrary() {
+function addBookToLibrary(book) {
 
 }

@@ -4,8 +4,35 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Library</title>
+   <link rel="stylesheet" href="styles/style.css">
+   <script src="scripts/script.js"></script>
 </head>
 <body>
-   
+   <header>
+      <h1>Library</h1>
+   </header>
+   <main class='library-container'>
+   <table class='books'>
+      <thead>
+         <tr class='table-header'>
+            <th class='title-header'>Title</th>
+            <th class='author-header'>Author</th>
+            <th class='pages-header'>Pages Read</th>
+            <th class='read-header'>Read</th>
+         </tr>
+      </thead>
+      <tbody>
+         <tr>
+            <td class='title'>Title</td>
+            <td class='title'>Author</td>
+            <td class='title'>0/300</td>
+            <td class='title'>Not Read</td>
+            <td class='new-book'>
+               <button class='new-book-button'>+</button>
+            </td>
+         </tr>
+      </tbody>
+   </table>
+   </main>
 </body>
 </html>

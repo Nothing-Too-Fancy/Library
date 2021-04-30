@@ -3,41 +3,47 @@ let myLibrary = [];
 //DOM Objects
 const _table = document.querySelector('.books');
 const _tbody = document.querySelector('.lib-body');
-const _editDelete = document.querySelector('.edit-delete');
-const _new = document.querySelector('.new');
+const _form = document.querySelector('.form');
+const _title = document.querySelector('.title');
+const _author = document.querySelector('.author');
+const _readPages = document.querySelector('.pages-read');
+const _totalPages = document.querySelector('.total-pages');
+const _status = document.querySelector('.status');
+const _editDelete =
+`<td class='edit-delete'>
+   <button class='edit'>Edit</button>
+   <button class='delete'>Delete</button>
+</td>`;
+const _new =
+`<td class='new'>
+   <button class='newbook'>+</button>
+</td>`;
 
-function Book(title, author, total, readPages, read) {
+//Book object constructor
+function Book(title, author, total, readPages, status) {
    this.title = title;
    this.author = author;
    this.totalPages = total;
    this.pagesRead = readPages;
-   this.read = read;
+   this.status = status;
 }
-
-let newBook = new Book(
-   title = 'Harry Potter',
-   author = 'JK Rowling',
-   totalPages = 300,
-   pagesRead = 35,
-   read = false
-   );
    
 function addBookToLibrary(book) {
    let tr = document.createElement('tr');
    let tdTitle = document.createElement('td');
    let tdAuthor = document.createElement('td');
    let tdPages = document.createElement('td');
-   let tdRead = document.createElement('td');
+   let tdStatus = document.createElement('td');
 
    tdTitle.textContent = book.title;
    tdAuthor.textContent = book.author;
    tdPages.textContent = `${book.pagesRead}/${book.totalPages}`;
-   tdRead.textContent = book.read ? 'Read' : 'Not Read';
+   tdStatus.textContent = book.status ? 'Read' : 'Not Read';
 
    tr.appendChild(tdTitle);
    tr.appendChild(tdAuthor);
    tr.appendChild(tdPages);
-   tr.appendChild(tdRead);
+   tr.appendChild(tdStatus);
    tr.appendChild(_editDelete.cloneNode(true));
    tr.appendChild(_new);
 
@@ -45,5 +51,3 @@ function addBookToLibrary(book) {
 
    myLibrary.push(book);
 }
-
-addBookToLibrary(newBook);

@@ -18,21 +18,25 @@
             <th class='title-header'>Title</th>
             <th class='author-header'>Author</th>
             <th class='pages-header'>Pages Read</th>
-            <th class='read-header'>Read</th>
+            <th class='read-header'>Status</th>
          </tr>
       </thead>
       <tbody class='lib-body'>
-         <tr class='first-row'>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td class='edit-delete'>
-               <button class='edit'>Edit</button>
-               <button class='delete'>Delete</button>
+         <tr class='form'>
+            <td><input class='title' type='text' name='title' placeholder='Title'></td>
+            <td><input class='author' type='text' name='author' placeholder='Author'></td>
+            <td class='pages'>
+                <input class='pages-read' type='text' name='pages-read' placeholder='Read' size='4'>/
+                <input class='totalpages' type='text' name='total-pages' placeholder='Total' size='4'>
             </td>
-            <td class='new'>
-               <button class='newbook'>+</button>
+            <td><select class='status'>
+               <option value='Not Read'>Not Read</option>
+               <option value='Read'>Read</option>
+               <option value='Want To Read'>Want To Read</option>
+            </select></td>
+            <td>
+               <button class='submit' type='submit'>Ok</button>
+               <button class='cancel'>Cancel</button> 
             </td>
          </tr>
       </tbody>

@@ -5,7 +5,7 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Library</title>
    <link rel="stylesheet" href="styles/style.css">
-   <script src="scripts/script.js"></script>
+
 </head>
 <body>
    <header>
@@ -21,18 +21,23 @@
             <th class='read-header'>Read</th>
          </tr>
       </thead>
-      <tbody>
-         <tr>
-            <td class='title'>Title</td>
-            <td class='title'>Author</td>
-            <td class='title'>0/300</td>
-            <td class='title'>Not Read</td>
-            <td class='new-book'>
-               <button class='new-book-button'>+</button>
+      <tbody class='lib-body'>
+         <tr class='first-row'>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class='edit-delete'>
+               <button class='edit'>Edit</button>
+               <button class='delete'>Delete</button>
+            </td>
+            <td class='new'>
+               <button class='newbook'>+</button>
             </td>
          </tr>
       </tbody>
    </table>
    </main>
+   <script src="scripts/script.js"></script>
 </body>
 </html>

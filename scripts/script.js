@@ -148,14 +148,17 @@ function render()
       let editDeleteCopy = _editDelete.cloneNode(true);
       let editBtn = editDeleteCopy.querySelector('.edit');
       editBtn.setAttribute('data-index', `${index}`);
-      editBtn.addEventListener('click', () => {
-         _form.setAttribute('data-index', editBtn.dataset.index);
-         _tbody.replaceChild(_form, editBtn.parentElement.parentElement);
+      editBtn.addEventListener('click', (e) => {
+         let target = e.target || e.srcElement;
+         _form.setAttribute('data-index', target.dataset.index);
+         _tbody.replaceChild(_form, target.parentElement.parentElement);
          });
 
       let deleteBtn = editDeleteCopy.querySelector('.delete');
       deleteBtn.setAttribute('data-index', `${index}`);
+      deleteBtn.addEventListener('click', () => {
 
+      });
       tr.appendChild(editDeleteCopy);
       tr.appendChild(_new);
 

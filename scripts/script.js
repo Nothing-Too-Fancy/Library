@@ -156,8 +156,10 @@ function render()
 
       let deleteBtn = editDeleteCopy.querySelector('.delete');
       deleteBtn.setAttribute('data-index', `${index}`);
-      deleteBtn.addEventListener('click', () => {
-
+      deleteBtn.addEventListener('click', (e) => {
+         let target = e.target || e.srcElement;
+         myLibrary.splice(target.dataset.index, 1);
+         render();
       });
       tr.appendChild(editDeleteCopy);
       tr.appendChild(_new);

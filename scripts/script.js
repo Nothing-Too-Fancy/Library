@@ -23,6 +23,7 @@ const _submit = document.querySelector('.submit').addEventListener('click',
             book.status = _status.value;
 
             myLibrary[parseInt(_form.dataset.index)] = book;
+            _form.removeAttribute('data-index');
             render();
          }
          else {

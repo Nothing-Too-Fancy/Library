@@ -128,42 +128,49 @@ function addBookToLibrary(book)
 function render()
 {
    _tbody.innerHTML = '';
-   myLibrary.forEach((book) => {
-      let index = myLibrary.indexOf(book);
-      let tr = document.createElement('tr');
-      let tdTitle = document.createElement('td');
-      let tdAuthor = document.createElement('td');
-      let tdPages = document.createElement('td');
-      let tdStatus = document.createElement('td');
+   if (!myLibrary.length)
+   {
+      _tbody.appendChild(_form);
+   }
+   else
+   {
+      myLibrary.forEach((book) => {
+         let index = myLibrary.indexOf(book);
+         let tr = document.createElement('tr');
+         let tdTitle = document.createElement('td');
+         let tdAuthor = document.createElement('td');
+         let tdPages = document.createElement('td');
+         let tdStatus = document.createElement('td');
 
-      tdTitle.textContent = book.title;
-      tdAuthor.textContent = book.author;
-      tdPages.textContent = `${book.pagesRead}/${book.totalPages}`;
-      tdStatus.textContent = book.status;
+         tdTitle.textContent = book.title;
+         tdAuthor.textContent = book.author;
+         tdPages.textContent = `${book.pagesRead}/${book.totalPages}`;
+         tdStatus.textContent = book.status;
 
-      tr.appendChild(tdTitle);
-      tr.appendChild(tdAuthor);
-      tr.appendChild(tdPages);
-      tr.appendChild(tdStatus);
-      let editDeleteCopy = _editDelete.cloneNode(true);
-      let editBtn = editDeleteCopy.querySelector('.edit');
-      editBtn.setAttribute('data-index', `${index}`);
-      editBtn.addEventListener('click', (e) => {
-         let target = e.target || e.srcElement;
-         _form.setAttribute('data-index', target.dataset.index);
-         _tbody.replaceChild(_form, target.parentElement.parentElement);
+         tr.appendChild(tdTitle);
+         tr.appendChild(tdAuthor);
+         tr.appendChild(tdPages);
+         tr.appendChild(tdStatus);
+         let editDeleteCopy = _editDelete.cloneNode(true);
+         let editBtn = editDeleteCopy.querySelector('.edit');
+         editBtn.setAttribute('data-index', `${index}`);
+         editBtn.addEventListener('click', (e) => {
+            let target = e.target || e.srcElement;
+            _form.setAttribute('data-index', target.dataset.index);
+            _tbody.replaceChild(_form, target.parentElement.parentElement);
          });
 
-      let deleteBtn = editDeleteCopy.querySelector('.delete');
-      deleteBtn.setAttribute('data-index', `${index}`);
-      deleteBtn.addEventListener('click', (e) => {
-         let target = e.target || e.srcElement;
-         myLibrary.splice(target.dataset.index, 1);
-         render();
-      });
-      tr.appendChild(editDeleteCopy);
-      tr.appendChild(_new);
+         let deleteBtn = editDeleteCopy.querySelector('.delete');
+         deleteBtn.setAttribute('data-index', `${index}`);
+         deleteBtn.addEventListener('click', (e) => {
+            let target = e.target || e.srcElement;
+            myLibrary.splice(target.dataset.index, 1);
+            render();
+         });
+         tr.appendChild(editDeleteCopy);
+         tr.appendChild(_new);
 
-      _tbody.appendChild(tr);
-   })
+         _tbody.appendChild(tr);
+      })
+   }
 }

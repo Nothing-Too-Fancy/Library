@@ -9,26 +9,31 @@ const _author = document.querySelector('.author');
 const _readPages = document.querySelector('.pages-read');
 const _totalPages = document.querySelector('.total-pages');
 const _status = document.querySelector('.status');
+
 const _submit = document.querySelector('.submit').addEventListener('click', 
    () => {
-      if (_form.hasAttribute('data-index')) {
-         let book = myLibrary[parseInt(_form.dataset.index)];
-         book.title = _title.value;
-         book.author = _author.value;
-         book.readPages = parseInt(_readPages.value);
-         book.totalPages = parseInt(_totalPages.value);
-         book.status = _status.value;
+      if (validate() == 0)
+      {
+         if (_form.hasAttribute('data-index')) {
+            let book = myLibrary[parseInt(_form.dataset.index)];
+            book.title = _title.value;
+            book.author = _author.value;
+            book.pagesRead = parseInt(_readPages.value);
+            book.totalPages = parseInt(_totalPages.value);
+            book.status = _status.value;
 
-         myLibrary[parseInt(_form.dataset.index)] = book;
-         render();
-      }
-      else {
-      let newBook = new Book(_title.value, _author.value, _totalPages.value, 
-         _readPages.value, _status.value);
+            myLibrary[parseInt(_form.dataset.index)] = book;
+            render();
+         }
+         else {
+            let newBook = new Book(_title.value, _author.value, _totalPages.value, 
+            _readPages.value, _status.value);
 
-      addBookToLibrary(newBook);
+            addBookToLibrary(newBook);
+         }
       }
-});
+   });
+
 const _cancel = document.querySelector('.cancel').addEventListener('click',
    () => {
       if (myLibrary.length != 0)
@@ -66,7 +71,9 @@ function buildNew() {
    td.appendChild(editButton);
    return td;
 }
+
 const _new = buildNew();
+
 _new.addEventListener('click', () => {
    _title.value = '';
    _author.value = '';
@@ -84,34 +91,37 @@ function Book(title, author, total, readPages, status) {
    this.pagesRead = parseInt(readPages);
    this.status = status;
 }
-   
-function addBookToLibrary(book)
-{
-   if (book.title      === '' || 
-       book.author     === '' ||
-       isNaN(book.totalPages) ||
-       isNaN(book.pagesRead))
-   {
 
+function validate() {
+   if (_title.value      === '' || 
+       _author.value     === '' ||
+       _totalPages.value === '' ||
+       _readPages.value  === '')
+   {
       alert("Please fill out all fields.");
-      return;
+      return -1;
    }
-   else if (typeof book.totalPages != 'number' ||
-            book.totalPages < 0 ||
-            typeof book.pagesRead  != 'number' ||
-            book.pagesRead < 0)
+   else if (isNaN(parseInt(_totalPages.value)) ||
+            isNaN(parseInt(_readPages.value))  ||
+            parseInt(_totalPages.value) < 0 ||
+            parseInt(_readPages.value) < 0)
    {
       alert("Please enter a positive number for page numbers.");
-      return;
+      return -1;
    }
-   else if (book.totalPages < book.pagesRead)
+   else if (parseInt(_totalPages.value) < parseInt(_readPages.value))
    {
       alert("Total pages cannot be less than pages read.");
-      return;
+      return -1;
    }
 
-   myLibrary.push(book);
-   render();
+   return 0;
+}
+
+function addBookToLibrary(book)
+{
+      myLibrary.push(book);
+      render();
 }
 
 function render()

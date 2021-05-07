@@ -122,12 +122,14 @@ function validate() {
 function addBookToLibrary(book)
 {
       myLibrary.push(book);
+      saveLibrary();
       render();
 }
 
 function render()
 {
    _tbody.innerHTML = '';
+   loadLibrary();
    if (!myLibrary.length)
    {
       _tbody.appendChild(_form);
@@ -174,3 +176,16 @@ function render()
       })
    }
 }
+
+function saveLibrary(){
+   localStorage.setItem('library', JSON.stringify(myLibrary));
+}
+
+function loadLibrary() {
+   if (localStorage.getItem('library'))
+   {
+      myLibrary = JSON.parse(localStorage.getItem('library'));
+   }
+}
+
+render();

@@ -1,5 +1,17 @@
 let myLibrary = [];
 
+//Book class
+class Book {
+
+   constructor(title, author, total, readPages, status) {
+      this.title = title;
+      this.author = author;
+      this.totalPages = parseInt(total);
+      this.pagesRead = parseInt(readPages);
+      this.status = status;
+   }
+}
+
 //DOM Objects
 const _table = document.querySelector('.books');
 const _tbody = document.querySelector('.lib-body');
@@ -59,7 +71,8 @@ function buildEditDelete() {
    td.appendChild(deleteButton);
 
    return td;
-}
+};
+
 const _editDelete = buildEditDelete();
 
 function buildNew() {
@@ -71,7 +84,7 @@ function buildNew() {
 
    td.appendChild(editButton);
    return td;
-}
+};
 
 const _new = buildNew();
 
@@ -83,15 +96,6 @@ _new.addEventListener('click', () => {
    _status.value = 'Not Read';
    _tbody.appendChild(_form);
 })
-
-//Book object constructor
-function Book(title, author, total, readPages, status) {
-   this.title = title;
-   this.author = author;
-   this.totalPages = parseInt(total);
-   this.pagesRead = parseInt(readPages);
-   this.status = status;
-}
 
 function validate() {
    if (_title.value      === '' || 

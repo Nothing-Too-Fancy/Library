@@ -2,7 +2,7 @@
 
 Library app created as a project for [The Odin Project](https://www.theodinproject.com/).
 
-[Live Demo](https://nothing-too-fancy.github.io/Library/)
+[Live Demo](https://efinlaw.github.io/Library/)
 
 ## Requirements
 
